@@ -35,7 +35,7 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('https://ecommerce-api-uas.glitch.me/products')
+        const response = await fetch('http://localhost:3000/products')
         this.products = await response.json()
       } catch (error) {
         console.error('Error fetching products:', error)

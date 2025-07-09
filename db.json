@@ -17,6 +17,12 @@
       "name": "Synthia",
       "email": "syntia@mail.com",
       "password": "123"
+    },
+    {
+      "id": "3d84",
+      "name": "JohnDoe",
+      "email": "tes@gmail.com",
+      "password": "123"
     }
   ],
   "products": [
@@ -70,6 +76,28 @@
     }
   ],
   "histories": [
-
+    {
+      "id": "1752027544693",
+      "userId": "3d84",
+      "date": "2025-07-09T02:19:04.693Z",
+      "items": [
+        {
+          "id": "3",
+          "name": "Jamu Temulawak",
+          "price": 16000,
+          "image": "https://asset.kompas.com/crops/BHUd5qd_lpa9Ae-Zc1I-oAJ6g1k=/0x0:490x327/1200x800/data/photo/2023/05/01/644f83344bd06.png",
+          "quantity": 1
+        }
+      ],
+      "shippingCost": 25000,
+      "totalAmount": 41000,
+      "recipientInfo": {
+        "name": "123",
+        "phone": "123",
+        "address": "werwf"
+      },
+      "paymentMethod": "cod",
+      "status": "completed"
+    }
   ]
 }

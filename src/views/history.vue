@@ -112,7 +112,7 @@ export default {
     async loadHistories() {
       try {
         // Load histories from Glitch API
-        const response = await axios.get('https://ecommerce-api-uas.glitch.me/histories');
+        const response = await axios.get('http://localhost:3000/histories');
         this.histories = response.data || [];
         console.log('Loaded histories from database:', this.histories);
       } catch (error) {
