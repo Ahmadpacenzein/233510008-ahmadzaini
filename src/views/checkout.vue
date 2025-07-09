@@ -179,11 +179,11 @@ export default {
     async saveOrderToDatabase(orderHistory) {
       try {
         // Get current histories
-        const response = await axios.get('http://localhost:3000/histories');
+        const response = await axios.get('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/histories');
         const histories = response.data || [];
         
         // Add new order
-        await axios.post('http://localhost:3000/histories', orderHistory);
+        await axios.post('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/histories', orderHistory);
         
         console.log('Order successfully saved to database:', orderHistory);
       } catch (error) {

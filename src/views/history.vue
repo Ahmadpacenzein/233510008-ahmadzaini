@@ -112,7 +112,7 @@ export default {
     async loadHistories() {
       try {
         // Load histories from Glitch API
-        const response = await axios.get('http://localhost:3000/histories');
+        const response = await axios.get('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/histories');
         this.histories = response.data || [];
         console.log('Loaded histories from database:', this.histories);
       } catch (error) {

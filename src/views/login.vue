@@ -33,7 +33,7 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.get('http://localhost:3000/users', {
+        const response = await axios.get('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/users', {
           params: {
             email: this.email,
             password: this.password,

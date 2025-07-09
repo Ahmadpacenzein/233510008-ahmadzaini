@@ -63,7 +63,7 @@ export default {
     },
     async mounted() {
         try {
-            const response = await axios.get('https://ecommerce-api-uas.glitch.me/products');
+            const response = await axios.get('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/products');
             this.products = response.data || [];
         } catch (error) {
             console.error('Error fetching products:', error);
