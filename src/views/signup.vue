@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { createUser } from '../firebaseService'; // Pastikan path ini sesuai dengan struktur proyek Anda
 
 export default {
   name: 'SignUp',
@@ -47,7 +47,7 @@ export default {
         return;
       }
       try {
-        const response = await axios.post('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/users', {
+        await createUser({
           name: this.name,
           email: this.email,
           password: this.password,

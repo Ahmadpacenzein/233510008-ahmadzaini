@@ -93,8 +93,7 @@
 
 <script>
 import { useCartStore } from '../stores/cart';
-import { ref, computed } from 'vue';
-import axios from 'axios';
+import { addHistory } from '../firebaseService';
 
 export default {
   name: 'Checkout',
@@ -136,31 +135,31 @@ export default {
       try {
         // Get current user from localStorage
         const currentUser = JSON.parse(localStorage.getItem('user'));
-        if (!currentUser) {
+        if (!currentUser || !currentUser.id) {
           alert('Silakan login terlebih dahulu');
           this.$router.push('/login');
           return;
         }
 
         // Create order history entry
-        const orderHistory = {
-          id: Date.now().toString(),
-          userId: currentUser.id,
-          date: new Date().toISOString(),
-          items: this.cartStore.items,
-          shippingCost: this.shippingCost,
-          totalAmount: this.totalAmount,
-          recipientInfo: {
-            name: this.formData.recipientName,
-            phone: this.formData.phone,
-            address: this.formData.address
-          },
-          paymentMethod: this.formData.paymentMethod,
-          status: 'completed'
-        };
+      const orderHistory = {
+      id: Date.now().toString(),
+      userId: currentUser.id, // ✅ sudah dipastikan tidak undefined
+      date: new Date().toISOString(),
+      items: this.cartStore.items,
+      shippingCost: this.shippingCost,
+      totalAmount: this.totalAmount,
+      recipientInfo: {
+        name: this.formData.recipientName,
+        phone: this.formData.phone,
+        address: this.formData.address
+      },
+      paymentMethod: this.formData.paymentMethod,
+      status: 'completed'
+    };
 
-        // Save order to db.json
-        await this.saveOrderToDatabase(orderHistory);
+        // Save order to Firebase
+        await addHistory(orderHistory);
 
         // Clear cart
         this.cartStore.clearCart();
@@ -173,22 +172,6 @@ export default {
       } catch (error) {
         console.error('Error processing payment:', error);
         alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.');
-      }
-    },
-
-    async saveOrderToDatabase(orderHistory) {
-      try {
-        // Get current histories
-        const response = await axios.get('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/histories');
-        const histories = response.data || [];
-        
-        // Add new order
-        await axios.post('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/histories', orderHistory);
-        
-        console.log('Order successfully saved to database:', orderHistory);
-      } catch (error) {
-        console.error('Error saving order to database:', error);
-        throw error; // Re-throw to be handled by the caller
       }
     }
   }

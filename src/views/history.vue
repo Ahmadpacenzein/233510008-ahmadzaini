@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { getAllHistories } from '../firebaseService';
 
 export default {
   name: "History",
@@ -111,9 +111,7 @@ export default {
   methods: {
     async loadHistories() {
       try {
-        // Load histories from Glitch API
-        const response = await axios.get('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/histories');
-        this.histories = response.data || [];
+        this.histories = await getAllHistories();
         console.log('Loaded histories from database:', this.histories);
       } catch (error) {
         console.error('Error loading histories from database:', error);

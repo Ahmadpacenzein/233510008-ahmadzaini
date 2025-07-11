@@ -20,6 +20,7 @@
 
 <script>
 import { useCartStore } from '../stores/cart';
+import { getAllProducts } from '../firebaseService';
 
 export default {
   name: 'Product',
@@ -35,8 +36,7 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('https://76d631d0-69c8-416f-9728-c2664ab5acc5-00-33amtehofrobc.sisko.replit.dev/products')
-        this.products = await response.json()
+        this.products = await getAllProducts();
       } catch (error) {
         console.error('Error fetching products:', error)
       }
